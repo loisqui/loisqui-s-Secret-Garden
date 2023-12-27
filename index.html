@@ -29,6 +29,8 @@
             position: absolute;
             color: #fff;
             font-size: 16px;
+            white-space: nowrap;
+            overflow: hidden;
             animation: danmu-float linear infinite;
         }
 
@@ -57,6 +59,52 @@
 
             // 示例弹幕
             createDanmu("Happy New Year!");
+
+            // 加载弹幕
+            function loadDanmu() {
+                // 获取弹幕数据
+                fetch("/get_messages")
+                    .then(response => response.json())
+                    .then(data => {
+                        // 渲染弹幕
+                        data.messages.forEach(message => createDanmu(`${message.username}: ${message.message}`));
+                    });
+            }
+
+            // 在页面加载时加载弹幕数据
+            loadDanmu();
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1>New Year Countdown</h1>
+    </header>
+
+    <main>
+        <section id="countdown">
+            <h2>Countdown to New Year</h2>
+            <p id="countdown-timer">Loading...</p>
+        </section>
+
+        <section id="messages">
+            <h2>Leave a Message</h2>
+            <textarea id="message-input" placeholder="Type your message..."></textarea>
+            <button id="submit-message">Submit</button>
+        </section>
+
+        <section id="danmu">
+            <h2>Danmu</h2>
+            <div id="danmu-container"></div>
+        </section>
+    </main>
+
+</body>
+
+</html>
 
             // 加载弹幕
             function loadDanmu() {
