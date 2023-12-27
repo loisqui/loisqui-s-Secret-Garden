@@ -1,85 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Year Countdown</title>
-  <style>/* styles.css */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Countdown</title>
+    <style>
+        /* styles.css */
+        body {
+            background-color: red;
+            /* 设置背景颜色为红色 */
+            overflow: hidden;
+            /* 隐藏页面溢出部分，以便雪花飘落在整个页面上 */
+        }
 
-body {
-  background-color: red; /* 设置背景颜色为红色 */
-  overflow: hidden; /* 隐藏页面溢出部分，以便雪花飘落在整个页面上 */
-}
+        /* 添加雪花飘落的样式 */
+        .snowflake {
+            position: absolute;
+            font-family: "Arial", sans-serif;
+            color: #fff;
+            user-select: none;
+            z-index: 1;
+            pointer-events: none;
+            animation: snowfall linear infinite;
+        }
 
-/* 添加雪花飘落的样式 */
-.snowflake {
-  position: absolute;
-  font-family: "Arial", sans-serif;
-  color: #fff;
-  user-select: none;
-  z-index: 1;
-  pointer-events: none;
-  animation: snowfall linear infinite;
-}
-.danmu-item {
-  position: absolute;
-  color: #fff;
-  font-size: 16px;
-  animation: danmu-float linear infinite;
-}
-@keyframes snowfall {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
-</style>
-<script>// script.js
+        .danmu-item {
+            position: absolute;
+            color: #fff;
+            font-size: 16px;
+            animation: danmu-float linear infinite;
+        }
 
-document.addEventListener("DOMContentLoaded", function () {
-  // ...（之前的代码）
+        @keyframes snowfall {
+            0% {
+                transform: translateY(0);
+            }
 
-  // 弹幕效果
-  function createDanmu(message) {
-    const danmuContainer = document.getElementById("danmu-container");
-    const danmu = document.createElement("div");
-    danmu.className = "danmu-item";
-    danmu.textContent = message;
-    danmuContainer.appendChild(danmu);
-  }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+    <script>
+        // script.js
 
-  // 示例弹幕
-  createDanmu("Happy New Year!");
+        document.addEventListener("DOMContentLoaded", function () {
+            // 弹幕效果
+            function createDanmu(message) {
+                const danmuContainer = document.getElementById("danmu-container");
+                const danmu = document.createElement("div");
+                danmu.className = "danmu-item";
+                danmu.textContent = message;
+                danmuContainer.appendChild(danmu);
+            }
 
-  // 在实际使用中，你可能需要通过 WebSocket 或其他方式接收实时弹幕数据
-  // 这里的 createDanmu 只是一个示例，你可以根据你的实际需求进行修改
-});
-</script>
+            // 示例弹幕
+            createDanmu("Happy New Year!");
+
+            // 加载弹幕
+            function loadDanmu() {
+                // 获取弹幕数据
+                fetch("/get_messages")
+                    .then(response => response.json())
+                    .then(data => {
+                        // 渲染弹幕
+                        data.messages.forEach(message => createDanmu(`${message.username}: ${message.message}`));
+                    });
+            }
+
+            // 在页面加载时加载弹幕数据
+            loadDanmu();
+
+            // 定时刷新弹幕
+            setInterval(loadDanmu, 5000); // 每隔5秒刷新一次
+
+        });
+    </script>
 </head>
+
 <body>
 
-  <header>
-    <h1>New Year Countdown</h1>
-  </header>
+    <header>
+        <h1>New Year Countdown</h1>
+    </header>
 
-  <main>
-    <section id="countdown">
-      <h2>Countdown to New Year</h2>
-      <p id="countdown-timer">Loading...</p>
-    </section>
+    <main>
+        <section id="countdown">
+            <h2>Countdown to New Year</h2>
+            <p id="countdown-timer">Loading...</p>
+        </section>
 
-    <section id="messages">
-      <h2>Leave a Message</h2>
-      <textarea id="message-input" placeholder="Type your message..."></textarea>
-      <button id="submit-message">Submit</button>
-    </section>
+        <section id="messages">
+            <h2>Leave a Message</h2>
+            <textarea id="message-input" placeholder="Type your message..."></textarea>
+            <button id="submit-message">Submit</button>
+        </section>
 
-    <section id="danmu">
-      <h2>Danmu</h2>
-      <div id="danmu-container"></div>
-    </section>
-  </main>
+        <section id="danmu">
+            <h2>Danmu</h2>
+            <div id="danmu-container"></div>
+        </section>
+    </main>
+
 </body>
+
 </html>
