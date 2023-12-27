@@ -44,38 +44,68 @@
             }
         }
     </style>
-    <script>
-        // script.js
+  <!-- 修改后的 script.js -->
 
-        document.addEventListener("DOMContentLoaded", function () {
-            // 弹幕效果
-            function createDanmu(message) {
-                const danmuContainer = document.getElementById("danmu-container");
-                const danmu = document.createElement("div");
-                danmu.className = "danmu-item";
-                danmu.textContent = message;
-                danmuContainer.appendChild(danmu);
-            }
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // 弹幕效果
+        function createDanmu(message) {
+            const danmuContainer = document.getElementById("danmu-container");
+            const danmu = document.createElement("div");
+            danmu.className = "danmu-item";
+            danmu.textContent = message;
+            danmuContainer.appendChild(danmu);
+        }
 
-            // 示例弹幕
-            createDanmu("Happy New Year!");
+        // 提交留言
+        document.getElementById("submit-message").addEventListener("click", function () {
+            const messageInput = document.getElementById("message-input");
+            const message = messageInput.value.trim();
 
-            // 加载弹幕
-            function loadDanmu() {
-                // 获取弹幕数据
-                fetch("/get_messages")
+            if (message !== "") {
+                // 发送留言数据到后端
+                fetch("/post_message", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ message: message }),
+                })
                     .then(response => response.json())
                     .then(data => {
-                        // 渲染弹幕
-                        data.messages.forEach(message => createDanmu(`${message.username}: ${message.message}`));
+                        // 处理后端返回的数据
+                        if (data.status === 'success') {
+                            // 渲染弹幕
+                            createDanmu(`You: ${message}`);
+                            // 清空输入框
+                            messageInput.value = "";
+                        } else {
+                            // 处理留言包含敏感词的情况
+                            alert(data.message);
+                        }
                     });
             }
-
-            // 在页面加载时加载弹幕数据
-            loadDanmu();
-
         });
-    </script>
+
+        // 加载弹幕
+        function loadDanmu() {
+            // 获取弹幕数据
+            fetch("/get_messages")
+                .then(response => response.json())
+                .then(data => {
+                    // 渲染弹幕
+                    data.messages.forEach(message => createDanmu(`${message.username}: ${message.message}`));
+                });
+        }
+
+        // 示例弹幕
+        createDanmu("Happy New Year!");
+
+        // 在页面加载时加载弹幕数据
+        loadDanmu();
+    });
+</script>
+
 </head>
 
 <body>
