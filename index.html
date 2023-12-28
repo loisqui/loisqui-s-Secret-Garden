@@ -1,41 +1,59 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Year Countdown</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Year Countdown</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
 
+    #countdown {
+      margin-top: 100px;
+      font-size: 2em;
+    }
+  </style>
+</head>
 <body>
 
-    <header>
-        <h1>New Year Countdown</h1>
-    </header>
+<div id="countdown"></div>
 
-    <main>
-        <section id="countdown">
-            <h2>Countdown to New Year</h2>
-            <p id="countdown-timer">Loading...</p>
-        </section>
+<script>
+  // 设置目标日期（2024 年 1 月 1 日 00:00:00）
+  const targetDate = new Date("January 1, 2024 00:00:00").getTime();
 
-        <section id="messages">
-            <h2>Leave a Message</h2>
-            <textarea id="message-input" placeholder="Type your message..."></textarea>
-            <button id="submit-message">Submit</button>
-        </section>
+  // 更新倒计时
+  function updateCountdown() {
+    const currentDate = new Date().getTime();
+    const timeRemaining = targetDate - currentDate;
 
-        <section id="danmu">
-            <h2>Danmu</h2>
-            <div id="danmu-container"></div>
-        </section>
-        <script src="script.js"></script>
-    </main>
+    // 计算剩余时间的天、时、分、秒
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+    // 更新页面上的倒计时
+    document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    // 如果目标日期已过，显示消息
+    if (timeRemaining < 0) {
+      document.getElementById("countdown").innerHTML = "Happy New Year!";
+    }
+  }
+
+  // 每秒更新一次倒计时
+  setInterval(updateCountdown, 1000);
+
+  // 初始加载
+  updateCountdown();
+</script>
 
 </body>
-
 </html>
 
