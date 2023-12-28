@@ -17,14 +17,31 @@
       margin-top: 100px;
       font-size: 2em;
     }
+
+    #message-form {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
 <div id="countdown"></div>
 
+<div id="message-form">
+  <h2>Leave a Message</h2>
+  <form id="submit-form">
+    <label for="username">Your Name:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" required></textarea>
+    <br>
+    <button type="submit">Submit Message</button>
+  </form>
+</div>
+
 <script>
-  // 设置目标日期（2024 年 1 月 1 日 00:00:00）
+// 设置目标日期（2024 年 1 月 1 日 00:00:00）
   const targetDate = new Date("January 1, 2024 00:00:00").getTime();
 
   // 更新倒计时
@@ -52,6 +69,35 @@
 
   // 初始加载
   updateCountdown();
+
+  // 提交留言
+  document.getElementById("submit-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const message = document.getElementById("message").value;
+
+    // 发送留言数据到后端
+    fetch("./post_message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, message }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        // 处理后端返回的数据
+        if (data.status === 'success') {
+          alert("Message submitted successfully!");
+          // 清空表单
+          document.getElementById("username").value = "";
+          document.getElementById("message").value = "";
+        } else {
+          alert("Error submitting message. Please try again.");
+        }
+      });
+  });
 </script>
 
 </body>
