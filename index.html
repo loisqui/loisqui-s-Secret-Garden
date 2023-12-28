@@ -1,105 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Year Countdown</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-    #countdown {
-      margin-top: 100px;
-      font-size: 2em;
-    }
+        #countdown {
+            margin-top: 50px;
+            font-size: 2em;
+        }
 
-    #message-form {
-      margin-top: 20px;
-    }
-  </style>
+        #message-form {
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body>
 
-<div id="countdown"></div>
+    <div id="countdown"></div>
 
-<div id="message-form">
-  <h2>Leave a Message</h2>
-  <form id="submit-form">
-    <label for="username">Your Name:</label>
-    <input type="text" id="username" name="username" required>
-    <br>
-    <label for="message">Message:</label>
-    <textarea id="message" name="message" required></textarea>
-    <br>
-    <button type="submit">Submit Message</button>
-  </form>
-</div>
+    <div id="message-form">
+        <h2>Leave a Message</h2>
+        <form id="submit-form">
+            <label for="username">Your Name:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <br>
+            <button type="submit">Submit Message</button>
+        </form>
+    </div>
 
-<script>
-// 设置目标日期（2024 年 1 月 1 日 00:00:00）
-  const targetDate = new Date("January 1, 2024 00:00:00").getTime();
+    <script>
+        // 设置目标日期（2024 年 1 月 1 日 00:00:00）
+        const targetDate = new Date("January 1, 2024 00:00:00").getTime();
 
-  // 更新倒计时
-  function updateCountdown() {
-    const currentDate = new Date().getTime();
-    const timeRemaining = targetDate - currentDate;
+        // 更新倒计时
+        function updateCountdown() {
+            const currentDate = new Date().getTime();
+            const timeRemaining = targetDate - currentDate;
 
-    // 计算剩余时间的天、时、分、秒
-    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            // 计算剩余时间的天、时、分、秒
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-    // 更新页面上的倒计时
-    document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            // 更新页面上的倒计时
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-    // 如果目标日期已过，显示消息
-    if (timeRemaining < 0) {
-      document.getElementById("countdown").innerHTML = "Happy New Year!";
-    }
-  }
-
-  // 每秒更新一次倒计时
-  setInterval(updateCountdown, 1000);
-
-  // 初始加载
-  updateCountdown();
-
-  // 提交留言
-  document.getElementById("submit-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const username = document.getElementById("username").value;
-    const message = document.getElementById("message").value;
-
-    // 发送留言数据到后端
-    fetch("./post_message", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, message }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        // 处理后端返回的数据
-        if (data.status === 'success') {
-          alert("Message submitted successfully!");
-          // 清空表单
-          document.getElementById("username").value = "";
-          document.getElementById("message").value = "";
-        } else {
-          alert("Error submitting message. Please try again.");
+            // 如果目标日期已过，显示消息
+            if (timeRemaining < 0) {
+                document.getElementById("countdown").innerHTML = "Happy New Year!";
+            }
         }
-      });
-  });
-</script>
+
+        // 每秒更新一次倒计时
+        setInterval(updateCountdown, 1000);
+
+        // 初始加载
+        updateCountdown();
+
+        // 提交留言
+        document.getElementById("submit-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const message = document.getElementById("message").value;
+
+            // 发送留言数据到后端
+            fetch("https://loisqui.github.io/loisqui-s-Secret-Garden/post_message", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, message }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // 处理后端返回的数据
+                    if (data.status === 'success') {
+                        alert("Message submitted successfully!");
+                        // 清空表单
+                        document.getElementById("username").value = "";
+                        document.getElementById("message").value = "";
+                    } else {
+                        alert("Error submitting message. Please try again.");
+                    }
+                });
+        });
+    </script>
 
 </body>
-</html>
 
+</html>
