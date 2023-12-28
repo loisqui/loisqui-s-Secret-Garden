@@ -80,7 +80,7 @@
             const message = document.getElementById("message").value;
 
             // 发送留言数据到后端
-            fetch("https://loisqui.github.io/loisqui-s-Secret-Garden/post_message", {
+            fetch("/post_message", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
