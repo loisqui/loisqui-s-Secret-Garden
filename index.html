@@ -32,18 +32,19 @@
     5px 5px 0 #fff,
     6px 6px 0 #fff,
     7px 7px 0 #fff;
-  line-height: 0.8em;
+  line-height: 1.25em;
   letter-spacing: 0.1em;
   transform: scaleY(0.7);
   -webkit-transform: scaleY(0.7);
   -moz-transform: scaleY(0.7);
   margin:0;
-  text-align: center;}
+  text-align: center;
+  letter-spacing: 3px;}
     
         #countdown{
             width: 80%;
             position: absolute;
-            margin: 35% 10%;
+            margin: 35% 15%;
             text-align: center;
             font-size: larger;
             background-image: -webkit-linear-gradient(left, blue,
@@ -86,8 +87,8 @@ line-height: 20px;
 .child {
     width: 100%;
     height: 100%;
-    font-family: '微软雅黑';
-    font-size: 20px;
+    font-family: '楷体';
+    font-size: 15px;
     position: relative;
     font-weight: 20;
 
@@ -97,26 +98,80 @@ line-height: 20px;
     color: rgb(80, 36, 151);
     text-shadow: 2px 2px 3px rgb(80, 36, 140);
     transform: translatex(300px);
-    animation: scrollToLeft linear 4s infinite;
+    animation: scrollToLeft linear 6s infinite;
 }
 
 .child-2 {
     color: black;
     text-shadow: 2px 2px 3px rgb(48, 20, 9);
-    transform: translatex(350px);
-    animation: scrollToLeft linear 4s infinite;
+    transform: translatex(400px);
+    animation: scrollToLeft linear 5s infinite;
 }
 
 .child-3 {
     color: blue;
     text-shadow: 2px 2px 3px rgb(29, 122, 168);
-    transform: translatex(400px);
+    transform: translatex(450px);
+    animation: scrollToLeft linear 6s infinite;
+}
+.child-4 {
+    color: rgb(255, 179, 0);
+    text-shadow: 2px 2px 3px rgb(226, 195, 123);
+    transform: translatex(420px);
     animation: scrollToLeft linear 4s infinite;
+}
+.child-5 {
+    color: rgb(41, 150, 135);
+    text-shadow: 2px 2px 3px rgb(41, 150, 0);
+    transform: translatex(410px);
+    animation: scrollToLeft linear 6s infinite;
+}
+.child-6 {
+    color: rgb(225, 121, 228);
+    text-shadow: 2px 2px 3px rgb(225, 121, 128);
+    transform: translatex(400px);
+    animation: scrollToLeft linear 6s infinite;
+}
+.child-9 {
+    color: rgb(15, 94, 91);
+    text-shadow: 2px 2px 3px rgb(15, 94, 290);
+    transform: translatex(410px);
+    animation: scrollToLeft linear 6s infinite;
+}
+.child-11 {
+    color: rgb(102, 59, 14);
+    text-shadow: 2px 2px 3px rgb(102, 59, 240);
+    transform: translatex(450px);
+    animation: scrollToLeft linear 6s infinite;
+}
+.child-12 {
+    color: rgb(104, 150, 36);
+    text-shadow: 2px 2px 3px rgb(104, 150, 236);
+    transform: translatex(390px);
+    animation: scrollToLeft linear 6s infinite;
+}
+.child-10 {
+    color: rgb(70, 145, 29);
+    text-shadow: 2px 2px 3px rgb(70, 145, 139);
+    transform: translatex(380px);
+    animation: scrollToLeft linear 6s infinite;
+}
+.child-7 {
+    color: rgb(59, 8, 44);
+    text-shadow: 2px 2px 3px rgb(141, 41, 111);
+    transform: translatex(420px);
+    animation: scrollToLeft linear 6s infinite;
+}
+.child-8 {
+    color: blue;
+    text-shadow: 2px 2px 3px rgb(29, 122, 168);
+    transform: translatex(300px);
+    animation: scrollToLeft linear 6s infinite;
 }
 
 @keyframes scrollToLeft {
     to {
-        transform: translateX(-300px);
+        transform: translateX(-350px);
     }
 }
 .child:hover {
@@ -140,16 +195,55 @@ line-height: 20px;
     <div id="firework"><canvas id="canvas">Canvas is not supported in your browser.</canvas></div>
     <div class="box">
             <div class="track">
-            <div class="child child-1">福启新岁，万事顺遂。</div></div>
+            <div class="child child-1">
+            福启新岁，万事顺遂。
+            </div></div>
             <div class="track">
-            <div class="child child-2">旧岁千般皆如意，新年万事定称心。</div></div>
+            <div class="child child-2">
+                旧岁千般皆如意，新年万事定称心。
+            </div></div>
             <div class="track">
             <div class="child child-3">
                 四时平安，万物可爱，一切尽可期待。
+            </div></div>
+            <div class="track">
+            <div class="child child-4">
                 长路漫漫，终有归途。
+            </div></div>
+            <div class="track">
+            <div class="child child-5">
                 这路遥马急的人间，你我平安喜乐就好。
+            </div></div>
+            <div class="track">
+            <div class="child child-6">
                 凡是过往，皆为序章。
-                请保持好你的热爱，奔赴下一场山海。</div></div>
+            </div></div>
+            <div class="track">
+            <div class="child child-7">
+                请保持好你的热爱，奔赴下一场山海。
+            </div></div>
+            <div class="track">
+            <div class="child child-8">
+                "愿新的一年家人朋友们健康快乐!万事顺心!起落安妥!!!
+                好好过着每一天 遇到良良师益友!!顺顺利利毕业回公司 成功熬出头来!""
+            </div></div>
+            <div class="track">
+            <div class="child child-9">
+                减到100斤！
+            </div></div>
+            <div class="track">
+            <div class="child child-10">
+                新年愿望，没有体侧
+            </div></div>
+            <div class="track">
+            <div class="child child-11">
+                事事顺意！幸福安康！
+            </div></div>
+            <div class="track">
+            <div class="child child-12">
+                愿新的一年万事顺意！
+            </div></div>
+                
     
     </div>
     
