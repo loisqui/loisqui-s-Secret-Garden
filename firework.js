@@ -3,7 +3,7 @@ window.requestAnimFrame = ( function() {
                     window.webkitRequestAnimationFrame ||
                     window.mozRequestAnimationFrame ||
                     function( callback ) {
-                        window.setTimeout( callback, 1000 / 60 );
+                        window.setTimeout( callback, 1000 / 80 );
                     };
     })();
     
@@ -73,7 +73,7 @@ window.requestAnimFrame = ( function() {
         this.angle = Math.atan2( ty - sy, tx - sx );
         this.speed = 2;
         this.acceleration = 1.05;
-        this.brightness = random( 50, 70 );
+        this.brightness = random( 60, 80 );
         // circle target indicator radius
         this.targetRadius = 1;
     }
@@ -147,7 +147,7 @@ window.requestAnimFrame = ( function() {
         this.gravity = 1;
         // set the hue to a random number +-20 of the overall hue variable
         this.hue = random( hue - 20, hue + 20 );
-        this.brightness = random( 50, 80 );
+        this.brightness = random( 80, 100 );
         this.alpha = 1;
         // set how fast the particle fades out
         this.decay = random( 0.015, 0.03 );
@@ -186,7 +186,7 @@ window.requestAnimFrame = ( function() {
     // create particle group/explosion
     function createParticles( x, y ) {
         // increase the particle count for a bigger explosion, beware of the canvas performance hit with the increased particles though
-        var particleCount = 30;
+        var particleCount = 50;
         while( particleCount-- ) {
             particles.push( new Particle( x, y ) );
         }
