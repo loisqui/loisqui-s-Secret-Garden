@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Arvo:700);
+        @import url(https://fonts.googleapis.com/css?family=Seaweed+Script);
+        body{
+            background-color:rgb(187, 122, 122);
+            background-size: cover;
+            margin: 0;
+            overflow: hidden;
+        }
+        #title {
+            width: 800px;
+            margin:8% 23%;
+            position: absolute;
+}
+        h1,h2{
+            color: #fff;
+            font-size: 60px;
+  font-family: Arvo;
+  font-weight: bold;
+  text-shadow:
+    -3px -3px 0 #222,
+    3px -3px 0 #222,
+    -3px 3px 0 #222,
+    3px 3px 0 #222,
+    4px 4px 0 #fff,
+    5px 5px 0 #fff,
+    6px 6px 0 #fff,
+    7px 7px 0 #fff;
+  line-height: 0.8em;
+  letter-spacing: 0.1em;
+  transform: scaleY(0.7);
+  -webkit-transform: scaleY(0.7);
+  -moz-transform: scaleY(0.7);
+  margin:0;
+  text-align: center;}
+    
+        #countdown{
+            position: absolute;
+            margin: 20% 35%;
+            text-align: center;
+            letter-spacing: 0.2rem;
+            font-size: 30px;
+            background-image: -webkit-linear-gradient(left, blue,
+        #66ffff 10%, #cc00ff 20%,
+        #CC00CC 30%, #CCCCFF 40%,
+        #00FFFF 50%, #CCCCFF 60%,
+        #CC00CC 70%, #CC00FF 80%,
+        #66FFFF 90%, blue 100%);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: masked-animation 4s linear infinite;
+}
+
+@keyframes masked-animation {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+#firework{
+    position: absolute;
+}
+canvas{
+    cursor: crosshair;
+	display: block;
+
+}
+
+.box{
+position: absolute;
+background: rgba(0,0,0,0.1);
+margin: -40%;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+}
+
+.track{
+
+line-height: 20px;
+}
+.child {
+    width: 300px;
+    height: 20px;
+    font-family: '微软雅黑';
+    position: relative;
+    font-weight: 20;
+
+}
+
+.child-1 {
+    color: rgb(80, 36, 151);
+    text-shadow: 2px 2px 3px rgb(80, 36, 140);
+    transform: translatex(2000px);
+    animation: scrollToLeft linear 12s infinite;
+}
+
+.child-2 {
+    color: black;
+    text-shadow: 2px 2px 3px rgb(48, 20, 9);
+    transform: translatex(2000px);
+    animation: scrollToLeft linear 14s infinite;
+}
+
+.child-3 {
+    color: blue;
+    text-shadow: 2px 2px 3px rgb(29, 122, 168);
+    transform: translatex(2000px);
+    animation: scrollToLeft linear 12.3s infinite;
+}
+
+@keyframes scrollToLeft {
+    to {
+        transform: translateX(-100px);
+    }
+}
+.child:hover {
+  animation-play-state: paused;
+} 
+
+    </style>
+</head>
+<body>
+    <div id="title">
+        <h1>
+            Happy New Year!
+        </h1>
+        <h2>
+            2024，你好
+        </h2>
+    </div>
+    <div id="countdown">剩余时间: 0天 00时00分00</div>
+        <!--behavior:动作——scroll 一直重复，slide 只播放一次，alternate 来回弹动；direction:方向；scrollamount:速度-->
+    <script src="countdown.js"></script>
+    <div id="firework"></div><canvas id="canvas">Canvas is not supported in your browser.</canvas>
+    <div class="box">
+            <div class="track">
+            <div class="child child-1">福启新岁，万事顺遂。</div></div>
+            <div class="track">
+            <div class="child child-2">旧岁千般皆如意，新年万事定称心。</div></div>
+            <div class="track">
+            <div class="child child-3">
+                四时平安，万物可爱，一切尽可期待。
+                长路漫漫，终有归途。
+                这路遥马急的人间，你我平安喜乐就好。
+                凡是过往，皆为序章。
+                请保持好你的热爱，奔赴下一场山海。</div></div>
+    
+    </div>
+    
+    <script src="firework.js"></script>
+</body>
+</html>
