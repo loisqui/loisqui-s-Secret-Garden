@@ -12,8 +12,6 @@
             background-size: cover;
             margin: 0;
             overflow: hidden;
-            width:200px;
-            height:440px; 
         }
         #title {
             width: 80%;
@@ -22,7 +20,7 @@
 }
         h1,h2{
             color: #fff;
-            font-size: 40px;
+            font-size: xx-large;
   font-family: Arvo;
   font-weight: bold;
   text-shadow:
@@ -45,9 +43,9 @@
         #countdown{
             width: 80%;
             position: absolute;
-            margin: 25% 10%;
+            margin: 35% 10%;
             text-align: center;
-            font-size: 30px;
+            font-size: larger;
             background-image: -webkit-linear-gradient(left, blue,
         #66ffff 10%, #cc00ff 20%,
         #CC00CC 30%, #CCCCFF 40%,
@@ -70,11 +68,13 @@
 }
 #firework{
     position: absolute;
+    width: 360px;
+    height: 480px;
 }
 
 .box{
 position: absolute;
-margin: -40%;
+margin: 10%;
 display: flex;
 flex-direction: column;
 justify-content: space-around;
@@ -137,7 +137,7 @@ line-height: 20px;
     <div id="countdown">剩余时间: 0天 00时00分00</div>
         <!--behavior:动作——scroll 一直重复，slide 只播放一次，alternate 来回弹动；direction:方向；scrollamount:速度-->
     <script src="countdown.js"></script>
-    <div id="firework"></div><canvas id="canvas">Canvas is not supported in your browser.</canvas>
+    <div id="firework"><canvas id="canvas">Canvas is not supported in your browser.</canvas></div>
     <div class="box">
             <div class="track">
             <div class="child child-1">福启新岁，万事顺遂。</div></div>
